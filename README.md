@@ -17,7 +17,7 @@ Picture of Finished project here
 How to play and navigate ?Possible menu? Cheat CODES? who knows
 
 ### Wireframe
-![Connect 4 wireframe](/Wireframe-Project1.pdf "Wireframe Project 1")   
+![Connect 4 wireframe](/Wireframe-Project1.jpeg)   
 
 
 
