@@ -36,18 +36,37 @@ let createGameColumn = function () {
         playArea.append(createGameColumn);
         // playGameColumn[i];
     }
-    let playGameColumn = document.querySelectorAll('ol');
-    playGameColumn.forEach(function () {
-        for (let i = 0; i < playGameColumn.length; i++) {
+
+    let playGameColumns = document.querySelectorAll('ol');
+    playGameColumns.forEach(function () {
+        for (let i = 0; i < playGameColumns.length; i++) {
             let createGameRow = document.createElement('li');
             createGameRow.className = "rows";
-            playGameColumn[i].append(createGameRow);
+            playGameColumns[i].append(createGameRow);
         }
     });
 }
 createGameColumn();
+// how will I style each li based on columns/rows?
+let playGameColumns = document.querySelectorAll('ol');
+let playGameRows = document.querySelectorAll('li');
+for (let i = 0; i < playGameRows.length; i++) {
+    if (i % 2 === 0) {
+        playGameRows[i].style.backgroundColor = 'blue';
+    }
+    else {
+        playGameRows[i].style.backgroundColor = 'red';
 
+    }
+}
+for (let i = 0; i < playGameColumns.length; i++) {
+    if (i % 2 === 0) {
 
+        playGameColumns[i].style.backgroundColor = 'purple';
+    }
+}
+// this keyword w/ an event listener to directly identify each one
+playGameColumns[4].style.backgroundColor = 'teal';
 // IF ELSE STATEMENTS MAYBE? to determine possible drop area and occupied spots maybe have a class....
 // let createGameColumn = function () {
 //     // let playGameColumn = document.querySelectorAll('ol');
