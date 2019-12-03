@@ -32,10 +32,16 @@ let playArea = document.querySelector('main');
 
 // this function takes the userSelection and turns it a color
 // now when a user clicks a column/rows in that column i want the last row to turn a color
+let holdingNode = document.createElement('div');
 
 function userSelection() {
-    let dropArea = this.lastElementChild;
-    dropArea.style.backgroundColor = 'grey';
+    // let dropArea = this.lastElementChild;
+    // dropArea.style.backgroundColor = 'grey';
+    // can't remove child? maybe move it
+    // dropArea.removeChild(dropArea);
+
+    this.lastElementChild.style.backgroundColor = 'grey';
+    holdingNode.insertBefore(this, null);
     // let selectedArea = Array.from(playGameRows);
     // let filledArea = selectedArea.pop();
     // console.log(filledArea);
@@ -55,7 +61,7 @@ let createGameColumn = function () {
     for (let i = 0; i < 7; i++) {
         let createGameColumn = document.createElement('ol');
         createGameColumn.className = "columns";
-        createGameColumn.addEventListener('click', userSelection, false);
+        createGameColumn.addEventListener('click', userSelection);
         playArea.append(createGameColumn);
         // playGameColumn[i];
     }
