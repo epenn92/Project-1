@@ -28,11 +28,34 @@ let playArea = document.querySelector('main');
 // let selectAllColumns = document.getElementsByTagName('ol');
 // let selectAllRows = document.getElementsByTagName('li');
 // column objects need to be a nodelist
+
+
+// this function takes the userSelection and turns it a color
+// now when a user clicks a column/rows in that column i want the last row to turn a color
+
+function userSelection() {
+    let dropArea = this.lastElementChild;
+    dropArea.style.backgroundColor = 'grey';
+    // let selectedArea = Array.from(playGameRows);
+    // let filledArea = selectedArea.pop();
+    // console.log(filledArea);
+    // console.log(selectedArea)
+    // this.style.backgroundColor = 'grey';
+
+}
+
+// let selectedArea = Array.from(playGameRows);
+// let selectedAreas = Array.from(playGameColumns);
+// console.log(selectedArea);
+// console.log(selectedAreas);
+
+
 let createGameColumn = function () {
     // let playGameColumn = document.querySelectorAll('ol');
     for (let i = 0; i < 7; i++) {
         let createGameColumn = document.createElement('ol');
         createGameColumn.className = "columns";
+        createGameColumn.addEventListener('click', userSelection, false);
         playArea.append(createGameColumn);
         // playGameColumn[i];
     }
@@ -41,7 +64,11 @@ let createGameColumn = function () {
     playGameColumns.forEach(function () {
         for (let i = 0; i < playGameColumns.length; i++) {
             let createGameRow = document.createElement('li');
+            // createGameRow.addEventListener('click', function (ext) {
+            //     console.log("i was clicked");
+            // })
             createGameRow.className = "rows";
+            // createGameRow.addEventListener('click', userSelection, false);
             playGameColumns[i].append(createGameRow);
         }
     });
@@ -65,8 +92,16 @@ for (let i = 0; i < playGameColumns.length; i++) {
         playGameColumns[i].style.backgroundColor = 'purple';
     }
 }
+
+
+// playGameRows.addEventListener('click', function (evt) {
+//     console.log("Iwas")
+
 // this keyword w/ an event listener to directly identify each one
-playGameColumns[4].style.backgroundColor = 'teal';
+// playGameRows.addEventListener('click', function (evt) {
+//     console.log("I clicked");
+// });
+
 // IF ELSE STATEMENTS MAYBE? to determine possible drop area and occupied spots maybe have a class....
 // let createGameColumn = function () {
 //     // let playGameColumn = document.querySelectorAll('ol');
