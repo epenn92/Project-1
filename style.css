@@ -4,14 +4,58 @@
 
 */
 
-
-
-
-/* Grid for each possible slot? 6X7 board, Fill slots and maybe use a class or JS to fill/cover them and make them inaccessible to next piece? 
-
+/*
 Want to style player names with a border when its their turn
 Change text content depending on player turn as well
 */
-.columns {
-    
+header {
+    grid-area: header;
 }
+
+.selected {
+
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+    border: 1px solid gold;
+}
+
+.rows {
+    grid-area: rows;
+    height: 50px;
+    width: 50px;
+    border: 1px solid black;
+    border-radius: 25px;
+    display: block;
+      
+}
+
+.columns {
+    grid-area: columns;
+    display: inline-block;
+}
+
+
+
+
+/* Grid for each possible slot? 6X7 board, Fill slots and maybe use a class or JS to fill/cover them and make them inaccessible to next piece? */
+body {
+    display: grid;
+    /* height: 1000px;
+    width: 1000px; */
+    grid-auto-flow: row;
+    /* grid-template-columns: 12% 15% 15% 15% 15% 15% 12.5%;
+    grid-template-rows: 40% 10% 10% 10% 10% 10% 10%;
+    grid-template-areas: "header header header header header header header"
+                        "rows rows rows rows rows rows rows"
+                        "rows rows rows rows rows rows rows"
+                        "rows rows rows rows rows rows rows"
+                        "rows rows rows rows rows rows rows"
+                        "rows rows rows rows rows rows rows"
+                        "rows rows rows rows rows rows rows"; */
+    /* justify-items: stretch;
+    align-content: space-between; */
+
+
+}
+

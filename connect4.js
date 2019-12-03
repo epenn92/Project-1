@@ -32,16 +32,49 @@ let playArea = document.querySelector('main');
 
 // this function takes the userSelection and turns it a color
 // now when a user clicks a column/rows in that column i want the last row to turn a color
-let holdingNode = document.createElement('div');
+// let holdingNode = document.createElement('div');
 
+// last element by class name? then update class name?
 function userSelection() {
+    // console.log(this);
+    // NodeList of pieces with class rows
+    let dropArea = this.querySelectorAll('.rows')
+    // console.log(uncheckedPieces.length)
+
+    // let changeBoard = this.querySelector('.rows:nth-last-child(1)');
+    let changeBoard = dropArea[dropArea.length - 1];
+    if (dropArea.length === 1) {
+        alert(`You can't play in this column!`);
+    }
+    else {
+        changeBoard.classList.remove('rows')
+        changeBoard.classList.add('selected')
+    }
+    // console.log(changeBoard);
+
+
+    // doesn't work with targetting children here!
+    // let dropArea = this.children;
+    // console.log(dropArea);
+    // let selectedArea = dropArea[dropArea.length - 1];
+    // console.log(selectedArea);
+    // selectedArea.classList.remove('rows');
+    // selectedArea.classList.add('selected');
+
+
+    // maybe iterate through the last childs
+    // for (let i = 0; nthofchild - i; i++;) {
+
+    // }
     // let dropArea = this.lastElementChild;
     // dropArea.style.backgroundColor = 'grey';
     // can't remove child? maybe move it
     // dropArea.removeChild(dropArea);
 
-    this.lastElementChild.style.backgroundColor = 'grey';
-    holdingNode.insertBefore(this, null);
+
+    // this makes a black hole...
+    // this.lastElementChild.style.backgroundColor = 'grey';
+    // holdingNode.insertBefore(this, null);
     // let selectedArea = Array.from(playGameRows);
     // let filledArea = selectedArea.pop();
     // console.log(filledArea);
@@ -81,23 +114,23 @@ let createGameColumn = function () {
 }
 createGameColumn();
 // how will I style each li based on columns/rows?
-let playGameColumns = document.querySelectorAll('ol');
-let playGameRows = document.querySelectorAll('li');
-for (let i = 0; i < playGameRows.length; i++) {
-    if (i % 2 === 0) {
-        playGameRows[i].style.backgroundColor = 'blue';
-    }
-    else {
-        playGameRows[i].style.backgroundColor = 'red';
+// let playGameColumns = document.querySelectorAll('ol');
+// let playGameRows = document.querySelectorAll('li');
+// for (let i = 0; i < playGameRows.length; i++) {
+//     if (i % 2 === 0) {
+//         playGameRows[i].style.backgroundColor = 'blue';
+//     }
+//     else {
+//         playGameRows[i].style.backgroundColor = 'red';
 
-    }
-}
-for (let i = 0; i < playGameColumns.length; i++) {
-    if (i % 2 === 0) {
+//     }
+// }
+// for (let i = 0; i < playGameColumns.length; i++) {
+//     if (i % 2 === 0) {
 
-        playGameColumns[i].style.backgroundColor = 'purple';
-    }
-}
+//         playGameColumns[i].style.backgroundColor = 'purple';
+//     }
+// }
 
 
 // playGameRows.addEventListener('click', function (evt) {
