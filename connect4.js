@@ -5,15 +5,50 @@
 // WINNING CONDITIONS
 // 4 of the same player's chips in a row, column, or diagonal. How will we identify this? maybe match? regex looking for 4 if we can somehow keep values in a string.... 6X7 board  how do we keep track of moves and turns and values that chips occupy seperate?together? prob together to determine wins...
 
+// row
+
+// if (
+// [x x x x]           [x o o o x o x]
+// [x x x x]           [x o x x o x x]
+// [x x x x]           [o o x o x o o]
+// [x x x x]           [x x o x x o x]   n + 3
+// if( let i )
+
 // Gameplay mechanics 
 // each user picks a column to drop their chip in and it should fall to the bottom-most unoccupied slot in that column. players have a 6X7 board to work with and are trying to match 4 of their chips in a row, diagonal(any direction), or column to win, players can block each other and each goes once per rotating turns. two players?
 // each click rotates to the next user?
 // let playerOne = addEventListener
 // let playerTwo
 
-// START
+
 
 //menu screen? what's taking you where? PVP, PVC, EZMODE, RULES(maybe just a link to connect4 rule site)
+//lets create a landing page
+let mainContent = document.querySelector('body');
+let playArea = document.querySelector('main');
+let headerArea = document.querySelector('header');
+let intro = document.createElement('div');
+
+intro.textContent = "CONNECT 4 DOTS THE GAME";
+mainContent.append(intro);
+
+
+// START game
+let startGameButton = document.createElement('button');
+startGameButton.textContent = "Start Game";
+playArea.append(startGameButton);
+startGameButton.addEventListener('click', function () {
+    // removeMainPage();
+    createGameColumn();
+    createGameElements();
+
+})
+
+// Remove Start Page stuff
+// function removeMainPage() {
+
+// }
+
 
 // GAMEPLAY
 // PVP 
@@ -21,8 +56,7 @@
 // I want JS to add 6 * 7 columns each with their own classes...Classes by columns or rows... IDs? each is unique... setup basis of columns in HTML? let JS fill those columns...
 //PLAY AREA
 
-let playArea = document.querySelector('main');
-let headerArea = document.querySelector('header');
+
 // 7 columns of 6 rows..each column = ol/ul, each row item = li?
 // lets try to make it an array through nodelists!
 // make 7 columns and foreach column make 6 li's
@@ -57,19 +91,33 @@ function userSelection() {
     }
     else {
         if (player === 1) {
-            changeBoard.classList.remove('rows')
-            changeBoard.classList.add('playerOne')
+            changeBoard.classList.remove('rows');
+            changeBoard.classList.add('playerOne');
+            changeBoard.dataset.player = player;
 
             player += 1;
 
         }
         else if (player === 2) {
-            changeBoard.classList.remove('rows')
+            changeBoard.classList.remove('rows');
             changeBoard.classList.add('playerTwo');
+            changeBoard.dataset.player = player;
+
             player -= 1;
         }
         changeGameElements();
     }
+    //winning conditions 
+    // console.log(dropArea);
+    for (let entry of dropArea.entries()) {
+        console.log(entry);
+
+    }
+    // for (let entry of dropArea.values()) {
+    //     console.log(entry);
+    // }
+    // console.log(dropArea.entries);
+    // console.log(dropArea.values);
     // console.log(changeBoard);
 
 
@@ -113,10 +161,11 @@ let createGameColumn = function () {
     // let playGameColumn = document.querySelectorAll('ol');
     for (let i = 0; i < 7; i++) {
 
-        let createGameColumn = document.createElement('ol');
-        createGameColumn.className = "columns";
-        createGameColumn.addEventListener('click', userSelection);
-        playArea.append(createGameColumn);
+        let gameColumn = document.createElement('ol');
+        // createGameColumn.className = "columns";
+        gameColumn.className = `columns${i}`;
+        gameColumn.addEventListener('click', userSelection);
+        playArea.append(gameColumn);
         // playGameColumn[i];
     }
 
@@ -128,6 +177,7 @@ let createGameColumn = function () {
             //     console.log("i was clicked");
             // })
             createGameRow.className = "rows";
+            createGameRow.dataset
             // createGameRow.addEventListener('click', userSelection, false);
             playGameColumns[i].append(createGameRow);
         }
@@ -156,6 +206,9 @@ let createGameElements = function () {
     let endGameButton = document.createElement('button');
     endGameButton.classList.add('endGameButton');
     endGameButton.textContent = "End Game";
+    endGameButton.addEventListener('click', function () {
+        // homePage();
+    })
     document.querySelector('nav').append(endGameButton);
 
 
@@ -192,9 +245,7 @@ function whichPlayerTurn(player) {
     }
 }
 //click event to start function
-createGameColumn();
-createGameElements();
-console.log(player);
+
 // how will I style each li based on columns/rows?
 // let playGameColumns = document.querySelectorAll('ol');
 // let playGameRows = document.querySelectorAll('li');

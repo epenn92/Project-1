@@ -44,13 +44,13 @@ header {
     background-color: red;
 }
 
-.restartGameButton{
+/* .restartGameButton{
 
 }
 
 .endGameButton {
-    
-}
+
+} */
 
 .rows {
     grid-area: rows;
@@ -63,7 +63,28 @@ header {
       
 }
 
-.columns {
+.columns0 {
+    grid-area: columns;
+    display: inline-block;
+    background-color: bisque;
+    padding: 10px;
+}
+
+.columns1 {
+    grid-area: columns;
+    display: inline-block;
+    background-color: bisque;
+    padding: 10px;
+}
+
+.columns2 {
+    grid-area: columns;
+    display: inline-block;
+    background-color: bisque;
+    padding: 10px;
+}
+
+.columns3 {
     grid-area: columns;
     display: inline-block;
     background-color: bisque;
@@ -71,7 +92,26 @@ header {
 }
 
 
+.columns4 {
+    grid-area: columns;
+    display: inline-block;
+    background-color: bisque;
+    padding: 10px;
+}
 
+.columns5 {
+    grid-area: columns;
+    display: inline-block;
+    background-color: bisque;
+    padding: 10px;
+}
+
+.columns6 {
+    grid-area: columns;
+    display: inline-block;
+    background-color: bisque;
+    padding: 10px;
+}
 
 /* Grid for each possible slot? 6X7 board, Fill slots and maybe use a class or JS to fill/cover them and make them inaccessible to next piece? */
 body {
