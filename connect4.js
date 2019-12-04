@@ -146,12 +146,36 @@ let createGameElements = function () {
     createPlayerTwo.classList.add('playerTwoIndicator');
     createPlayerTwo.textContent = "Player 2";
     headerArea.append(createPlayerTwo);
+    let createRestartButton = document.createElement('button');
+    createRestartButton.classList.add('restartGameButton');
+    createRestartButton.textContent = "Restart Game";
+    createRestartButton.addEventListener('click', function () {
+        blankGameState();
+    })
+    document.querySelector('nav').append(createRestartButton);
+    let endGameButton = document.createElement('button');
+    endGameButton.classList.add('endGameButton');
+    endGameButton.textContent = "End Game";
+    document.querySelector('nav').append(endGameButton);
+
 
 }
 
 // javascript Changes gameplay elements
 let changeGameElements = function () {
     whichPlayerTurn(player);
+}
+
+// javascript changes game state to blank
+let blankGameState = function () {
+    player = 1;
+    let allSelections = document.getElementsByTagName('LI');
+    for (let i = 0; i < allSelections.length; i++) {
+        allSelections[i].className = 'rows';
+    }
+    // document.querySelector('.playerOne').className = 'rows';
+    // document.querySelector('.playerTwo').className = 'rows';
+    changeGameElements();
 }
 
 // function to give text value based on player turn
