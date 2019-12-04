@@ -44,9 +44,6 @@ header {
     background-color: red;
 }
 
-.playerTurn {
-    
-}
 
 .rows {
     grid-area: rows;

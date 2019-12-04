@@ -68,7 +68,7 @@ function userSelection() {
             changeBoard.classList.add('playerTwo');
             player -= 1;
         }
-        // changeGameElements();
+        changeGameElements();
     }
     // console.log(changeBoard);
 
@@ -140,29 +140,20 @@ let createGameElements = function () {
     createPlayerOne.classList.add('playerOneIndicator');
     createPlayerOne.textContent = "Player 1";
     headerArea.append(createPlayerOne);
+    whichPlayerTurn(player);
+    headerArea.append(createPlayerTurn);
     let createPlayerTwo = document.createElement('h1');
     createPlayerTwo.classList.add('playerTwoIndicator');
     createPlayerTwo.textContent = "Player 2";
     headerArea.append(createPlayerTwo);
-    // let createPlayerTurn = document.createElement('h2');
-    // createPlayerTurn.textContent = "Works";
-    whichPlayerTurn(player);
-    // if (player === 1) {
-    //     createPlayerTurn.textContent = "Player 1's Turn";
-    //     createPlayerTurn.classList.add('playerOneIndicator');
-    //     createPlayerTurn.classList.remove('playerTwoIndicator');
-    // }
-    // else {
-    //     createPlayerTurn.textContent = "Player 2's Turn";
-    //     createPlayerTurn.classList.add('playerTwoIndicator');
-    //     createPlayerTurn.classList.remove('playerOneIndicator');
-    // }
 
-    // createPlayerTurn.classList.add('playerTurn');
-    // createPlayerTurn.textContent = whichPlayerTurn(player);
-
-    headerArea.append(createPlayerTurn);
 }
+
+// javascript Changes gameplay elements
+let changeGameElements = function () {
+    whichPlayerTurn(player);
+}
+
 // function to give text value based on player turn
 function whichPlayerTurn(player) {
     if (player === 1) {
@@ -179,7 +170,6 @@ function whichPlayerTurn(player) {
 //click event to start function
 createGameColumn();
 createGameElements();
-// createGameElements();
 console.log(player);
 // how will I style each li based on columns/rows?
 // let playGameColumns = document.querySelectorAll('ol');
