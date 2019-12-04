@@ -6,7 +6,10 @@
 // 4 of the same player's chips in a row, column, or diagonal. How will we identify this? maybe match? regex looking for 4 if we can somehow keep values in a string.... 6X7 board  how do we keep track of moves and turns and values that chips occupy seperate?together? prob together to determine wins...
 
 // Gameplay mechanics 
-// each user picks a column to drop their chip in and it should fall to the bottom-most unoccupied slot in that column. players have a 6X7 board to work with and are trying to match 4 of their chips in a row, diagonal(any direction), or column to win, players can block each other and each goes once per rotating turns.
+// each user picks a column to drop their chip in and it should fall to the bottom-most unoccupied slot in that column. players have a 6X7 board to work with and are trying to match 4 of their chips in a row, diagonal(any direction), or column to win, players can block each other and each goes once per rotating turns. two players?
+// each click rotates to the next user?
+// let playerOne = addEventListener
+// let playerTwo
 
 // START
 
@@ -19,6 +22,7 @@
 //PLAY AREA
 
 let playArea = document.querySelector('main');
+let headerArea = document.querySelector('header');
 // 7 columns of 6 rows..each column = ol/ul, each row item = li?
 // lets try to make it an array through nodelists!
 // make 7 columns and foreach column make 6 li's
@@ -35,7 +39,11 @@ let playArea = document.querySelector('main');
 // let holdingNode = document.createElement('div');
 
 // last element by class name? then update class name?
+let playerOneTag = document.querySelector('.firstPlayer');
+let playerTwoTag = document.querySelector('.secondPlayer');
+let player = 1;
 function userSelection() {
+    console.log(player);
     // console.log(this);
     // NodeList of pieces with class rows
     let dropArea = this.querySelectorAll('.rows')
@@ -45,10 +53,22 @@ function userSelection() {
     let changeBoard = dropArea[dropArea.length - 1];
     if (dropArea.length === 1) {
         alert(`You can't play in this column!`);
+
     }
     else {
-        changeBoard.classList.remove('rows')
-        changeBoard.classList.add('selected')
+        if (player === 1) {
+            changeBoard.classList.remove('rows')
+            changeBoard.classList.add('playerOne')
+
+            player += 1;
+
+        }
+        else if (player === 2) {
+            changeBoard.classList.remove('rows')
+            changeBoard.classList.add('playerTwo');
+            player -= 1;
+        }
+        // changeGameElements();
     }
     // console.log(changeBoard);
 
@@ -92,6 +112,7 @@ function userSelection() {
 let createGameColumn = function () {
     // let playGameColumn = document.querySelectorAll('ol');
     for (let i = 0; i < 7; i++) {
+
         let createGameColumn = document.createElement('ol');
         createGameColumn.className = "columns";
         createGameColumn.addEventListener('click', userSelection);
@@ -112,7 +133,54 @@ let createGameColumn = function () {
         }
     });
 }
+let createPlayerTurn = document.createElement('h2');
+// javascript creates gameplay profiles etc
+let createGameElements = function () {
+    let createPlayerOne = document.createElement('h1');
+    createPlayerOne.classList.add('playerOneIndicator');
+    createPlayerOne.textContent = "Player 1";
+    headerArea.append(createPlayerOne);
+    let createPlayerTwo = document.createElement('h1');
+    createPlayerTwo.classList.add('playerTwoIndicator');
+    createPlayerTwo.textContent = "Player 2";
+    headerArea.append(createPlayerTwo);
+    // let createPlayerTurn = document.createElement('h2');
+    // createPlayerTurn.textContent = "Works";
+    whichPlayerTurn(player);
+    // if (player === 1) {
+    //     createPlayerTurn.textContent = "Player 1's Turn";
+    //     createPlayerTurn.classList.add('playerOneIndicator');
+    //     createPlayerTurn.classList.remove('playerTwoIndicator');
+    // }
+    // else {
+    //     createPlayerTurn.textContent = "Player 2's Turn";
+    //     createPlayerTurn.classList.add('playerTwoIndicator');
+    //     createPlayerTurn.classList.remove('playerOneIndicator');
+    // }
+
+    // createPlayerTurn.classList.add('playerTurn');
+    // createPlayerTurn.textContent = whichPlayerTurn(player);
+
+    headerArea.append(createPlayerTurn);
+}
+// function to give text value based on player turn
+function whichPlayerTurn(player) {
+    if (player === 1) {
+        createPlayerTurn.textContent = "Player 1's Turn";
+        createPlayerTurn.classList.add('playerOneIndicator');
+        createPlayerTurn.classList.remove('playerTwoIndicator');
+    }
+    else {
+        createPlayerTurn.textContent = "Player 2's Turn";
+        createPlayerTurn.classList.add('playerTwoIndicator');
+        createPlayerTurn.classList.remove('playerOneIndicator');
+    }
+}
+//click event to start function
 createGameColumn();
+createGameElements();
+// createGameElements();
+console.log(player);
 // how will I style each li based on columns/rows?
 // let playGameColumns = document.querySelectorAll('ol');
 // let playGameRows = document.querySelectorAll('li');

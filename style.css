@@ -12,12 +12,40 @@ header {
     grid-area: header;
 }
 
-.selected {
+.playerOne {
 
     height: 50px;
     width: 50px;
     border-radius: 25px;
-    border: 1px solid gold;
+    border: 1px solid black;
+    background-color: blue;
+    display: block;
+    
+
+
+}
+
+.playerOneIndicator {
+    background-color: blue;
+}
+
+.playerTwo {
+
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+    border: 1px solid black;
+    background-color: red;
+    display: block;
+
+}
+
+.playerTwoIndicator {
+    background-color: red;
+}
+
+.playerTurn {
+    
 }
 
 .rows {
@@ -27,12 +55,15 @@ header {
     border: 1px solid black;
     border-radius: 25px;
     display: block;
+    background-color: whitesmoke;
       
 }
 
 .columns {
     grid-area: columns;
     display: inline-block;
+    background-color: bisque;
+    padding: 10px;
 }
 
 
