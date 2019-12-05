@@ -4,6 +4,9 @@ let headerArea = document.querySelector('header');
 let intro = document.createElement('div');
 intro.textContent = "CONNECT 4 DOTS THE GAME";
 mainContent.append(intro);
+let playerOneTag = document.querySelector('.firstPlayer');
+let playerTwoTag = document.querySelector('.secondPlayer');
+let player = 1;
 let startGameButton = document.createElement('button');
 startGameButton.textContent = "Start Game";
 playArea.append(startGameButton);
@@ -11,105 +14,62 @@ startGameButton.addEventListener('click', function () {
     createGameColumn();
     createGameElements();
 })
+winningGameConditions = function () {
 
+    horizontalWinCondition();
+    changeGameElements();
+}
 
-let playerOneTag = document.querySelector('.firstPlayer');
-let playerTwoTag = document.querySelector('.secondPlayer');
-let player = 1;
-function userSelection() {
+horizontalWinCondition = function () {
+    for (let r = 6; r > 0; r--)
+        for (let c = 0; c < 4; c++) {
+
+            // console.log(playGameColumns);
+            if ((playGameColumns[c].childNodes[r].dataset.player) == player &&
+                (playGameColumns[c + 1].childNodes[r].dataset.player) == player &&
+                (playGameColumns[c + 2].childNodes[r].dataset.player) == player &&
+                (playGameColumns[c + 3].childNodes[r].dataset.player) == player) {
+                return console.log(`${player} wins`);
+            }
+        }
+}
+
+userSelection = function () {
     // console.log(player);
     let playGameColumns = document.querySelectorAll('ol');
-    let dropArea = this.querySelectorAll('.rows');
+    let dropArea = document.querySelectorAll('.rows');
     let changeBoard = dropArea[dropArea.length - 1];
-    winningGameHorizontals = function () {
-        // I DID NOT KNOW YOU COULD DO THIS!
-        for (let r = 6; r >= 0; r--)
-            for (let c = 0; c < 7; c++) {
-                // console.log(playGameColumns);
-                if ((playGameColumns[c].childNodes[r].dataset.player) == player &&
-                    (playGameColumns[c + 1].childNodes[r].dataset.player) == player &&
-                    (playGameColumns[c + 2].childNodes[r].dataset.player) == player &&
-                    (playGameColumns[c + 3].childNodes[r].dataset.player) == player) {
-                    return console.log(`${player} wins`);
-                }
-                else {
-                    changeGameElements();
-                }
-            }
-        // console.log(playGameColumns);
-        // console.log((playGameColumns[i].childNodes[6 - i].dataset.player));
-        // console.log((playGameColumns[i + 1].childNodes[6 - i].dataset.player));
-        // console.log((playGameColumns[i + 2].childNodes[6 - i].dataset.player));
-        // console.log((playGameColumns[i + 3].childNodes[6 - i].dataset.player));
-        // console.log(player);
-    }
+    console.log(dropArea);
+    console.log(dropArea.classList);
     if (dropArea.length === 1) {
         alert(`You can't play in this column!`);
     }
     else {
         if (player === 1) {
-            changeBoard.classList.remove('rows');
-            changeBoard.classList.add('playerOne');
+            dropArea.classList.remove("rows");
+            dropArea.classList.add('playerOne');
             changeBoard.dataset.player = player;
-            winningGameHorizontals();
+            winningGameConditions();
             player += 1;
         }
         else if (player === 2) {
             changeBoard.classList.remove('rows');
             changeBoard.classList.add('playerTwo');
             changeBoard.dataset.player = player;
-            winningGameHorizontals();
+            winningGameConditions();
             player -= 1;
         }
-
-        // return console.log(`${player} wins`);
-        // winningGameHorizontals = function () {
-        //     for (let i = 0; i < 6; i++) {
-        //         console.log(playGameColumns);
-        //         if ((playGameColumns[i].childNodes[6 - i].dataset.player) === player &&
-        //             (playGameColumns[i + 1].childNodes[6 - i].dataset.player) === player &&
-        //             (playGameColumns[i + 2].childNodes[6 - i].dataset.player) === player &&
-        //             (playGameColumns[i + 3].childNodes[6 - i].dataset.player) === player) {
-        //             return console.log(`${player} wins`);
-        //         }
-        //         else {
-        //             changeGameElements();
-        //         }
-        //     }
     }
-
-    // winningGameHorizontals();
-    // changeGameElements();
-
 }
 
 
-// targets child node containing our player dataset attribute
 
 
-
-
-
-// console.log(playGameColumns[0].childNodes[6].dataset.player);
-// console.log(playGameColumns[0].childNodes[5].dataset.player);
-// this is the virtual game board
-
-// for (let entry of dropArea.values()) {
-// console.log(entry);
-//     console.log(dropArea[2][1]);
-//     // if ()
-
-// for (let i = 6; i < 7; i++) {
-// if (dropArea[i].dataset.player === "1") {
-// console.log("win");
-// }
-// }
-// }
-let createGameColumn = function () {
+createGameColumn = function () {
     for (let i = 0; i < 7; i++) {
         let gameColumn = document.createElement('ol');
         // gameColumn.className = `columns${i}`;
-        gameColumn.className = "columns";
+        gameColumn.classList.add("columns");
         gameColumn.addEventListener('click', userSelection);
         playArea.append(gameColumn);
     }
@@ -117,13 +77,13 @@ let createGameColumn = function () {
     playGameColumns.forEach(function () {
         for (let i = 0; i < playGameColumns.length; i++) {
             let createGameRow = document.createElement('li');
-            createGameRow.className = "rows";
+            createGameRow.classList.add('rows');
             playGameColumns[i].append(createGameRow);
         }
     });
 }
 let createPlayerTurn = document.createElement('h2');
-let createGameElements = function () {
+createGameElements = function () {
     let createPlayerOne = document.createElement('h1');
     createPlayerOne.classList.add('playerOneIndicator');
     createPlayerOne.textContent = "Player 1";
@@ -148,10 +108,10 @@ let createGameElements = function () {
     })
     document.querySelector('nav').append(endGameButton);
 }
-let changeGameElements = function () {
+changeGameElements = function () {
     whichPlayerTurn(player);
 }
-let blankGameState = function () {
+blankGameState = function () {
     player = 1;
     let allSelections = document.getElementsByTagName('LI');
     for (let i = 0; i < allSelections.length; i++) {
@@ -171,3 +131,86 @@ function whichPlayerTurn(player) {
         createPlayerTurn.classList.remove('playerOneIndicator');
     }
 }
+
+    // console.log(playGameColumns[6]);
+    // console.log(playGameColumns[5]);
+    // // horizontal win condition
+    // // I DID NOT KNOW YOU COULD DO THIS!
+    // for (let r = 6; r > 0; r--)
+    //     for (let c = 0; c < 7; c++) {
+
+        //         // console.log(playGameColumns);
+        //         if ((playGameColumns[c].childNodes[r].dataset.player) == player &&
+        //             (playGameColumns[c + 1].childNodes[r].dataset.player) == player &&
+        //             (playGameColumns[c + 2].childNodes[r].dataset.player) == player &&
+        //             (playGameColumns[c + 3].childNodes[r].dataset.player) == player) {
+            //             return console.log(`${player} wins`);
+            //         }
+            //         // vertical win condition
+            //         else if ((playGameColumns[c].childNodes[r].dataset.player) == player &&
+            //             (playGameColumns[c].childNodes[r - 1].dataset.player) == player &&
+            //             (playGameColumns[c].childNodes[r - 2].dataset.player) == player &&
+            //             (playGameColumns[c].childNodes[r - 3].dataset.player) == player) {
+                //             return console.log(`${player} wins`);
+                //         }
+                //         // // diagonal (up-right) win condition
+                //         // else if () {
+                    //         //     return console.log(`${player} wins`);
+                    //         // }
+                    //         // // diagonal (down-right) win condition
+                    //         // else if () {
+                        //         //     return console.log(`${player} wins`);
+                        //         // }
+                        // else {
+                            // }
+
+
+                            // console.log(playGameColumns);
+                            // console.log((playGameColumns[i].childNodes[6 - i].dataset.player));
+                            // console.log((playGameColumns[i + 1].childNodes[6 - i].dataset.player));
+                            // console.log((playGameColumns[i + 2].childNodes[6 - i].dataset.player));
+                            // console.log((playGameColumns[i + 3].childNodes[6 - i].dataset.player));
+                            // console.log(player);
+                            // return console.log(`${player} wins`);
+                            // winningGameHorizontals = function () {
+                            //     for (let i = 0; i < 6; i++) {
+                            //         console.log(playGameColumns);
+                            //         if ((playGameColumns[i].childNodes[6 - i].dataset.player) === player &&
+                            //             (playGameColumns[i + 1].childNodes[6 - i].dataset.player) === player &&
+                            //             (playGameColumns[i + 2].childNodes[6 - i].dataset.player) === player &&
+                            //             (playGameColumns[i + 3].childNodes[6 - i].dataset.player) === player) {
+                            //             return console.log(`${player} wins`);
+                            //         }
+                            //         else {
+                            //             changeGameElements();
+                            //         }
+                            //     }
+
+
+                            // winningGameHorizontals();
+                            // changeGameElements();
+
+
+
+
+                            // targets child node containing our player dataset attribute
+
+
+
+
+
+                            // console.log(playGameColumns[0].childNodes[6].dataset.player);
+                            // console.log(playGameColumns[0].childNodes[5].dataset.player);
+                            // this is the virtual game board
+
+                            // for (let entry of dropArea.values()) {
+                            // console.log(entry);
+                            //     console.log(dropArea[2][1]);
+                            //     // if ()
+
+                            // for (let i = 6; i < 7; i++) {
+                            // if (dropArea[i].dataset.player === "1") {
+                            // console.log("win");
+                            // }
+                            // }
+                            // }
