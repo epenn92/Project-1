@@ -7,11 +7,28 @@ mainContent.append(intro);
 let startGameButton = document.createElement('button');
 startGameButton.textContent = "Start Game";
 playArea.append(startGameButton);
+// takes me to the game
 startGameButton.addEventListener('click', function () {
     createGameColumn();
     createGameElements();
 })
+let endGameButton = document.createElement('button');
+endGameButton.textContent = "End Game";
+endGameButton.addEventListener('click', function () {
 
+})
+changeGameElements = function () {
+    whichPlayerTurn(player);
+}
+blankGameState = function () {
+    player = 1;
+    let allSelections = document.getElementsByTagName('LI');
+    for (let i = 0; i < allSelections.length; i++) {
+        allSelections[i].className = 'rows';
+        allSelections[i].dataset.player = 0;
+    }
+    changeGameElements();
+}
 
 let playerOneTag = document.querySelector('.firstPlayer');
 let playerTwoTag = document.querySelector('.secondPlayer');
@@ -184,17 +201,7 @@ let createGameElements = function () {
     })
     document.querySelector('nav').append(endGameButton);
 }
-let changeGameElements = function () {
-    whichPlayerTurn(player);
-}
-let blankGameState = function () {
-    player = 1;
-    let allSelections = document.getElementsByTagName('LI');
-    for (let i = 0; i < allSelections.length; i++) {
-        allSelections[i].className = 'rows';
-    }
-    changeGameElements();
-}
+
 function whichPlayerTurn(player) {
     if (player === 1) {
         createPlayerTurn.textContent = "Player 1's Turn";
