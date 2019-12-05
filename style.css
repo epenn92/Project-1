@@ -1,9 +1,5 @@
-
-
 /* first page jumbotron/links to game modes and rules? need a styling for page/elements
-
 */
-
 /*
 Want to style player names with a border when its their turn
 Change text content depending on player turn as well
@@ -11,47 +7,32 @@ Change text content depending on player turn as well
 header {
     grid-area: header;
 }
-
 .playerOne {
-
     height: 50px;
     width: 50px;
     border-radius: 25px;
     border: 1px solid black;
     background-color: blue;
     display: block;
-    
-
-
 }
-
 .playerOneIndicator {
     background-color: blue;
 }
-
 .playerTwo {
-
     height: 50px;
     width: 50px;
     border-radius: 25px;
     border: 1px solid black;
     background-color: red;
     display: block;
-
 }
-
 .playerTwoIndicator {
     background-color: red;
 }
-
 /* .restartGameButton{
-
 }
-
 .endGameButton {
-
 } */
-
 .rows {
     grid-area: rows;
     height: 50px;
@@ -60,59 +41,49 @@ header {
     border-radius: 25px;
     display: block;
     background-color: whitesmoke;
-      
 }
-
-.columns0 {
+.columns {
     grid-area: columns;
     display: inline-block;
     background-color: bisque;
     padding: 10px;
 }
-
 .columns1 {
     grid-area: columns;
     display: inline-block;
     background-color: bisque;
     padding: 10px;
 }
-
 .columns2 {
     grid-area: columns;
     display: inline-block;
     background-color: bisque;
     padding: 10px;
 }
-
 .columns3 {
     grid-area: columns;
     display: inline-block;
     background-color: bisque;
     padding: 10px;
 }
-
-
 .columns4 {
     grid-area: columns;
     display: inline-block;
     background-color: bisque;
     padding: 10px;
 }
-
 .columns5 {
     grid-area: columns;
     display: inline-block;
     background-color: bisque;
     padding: 10px;
 }
-
 .columns6 {
     grid-area: columns;
     display: inline-block;
     background-color: bisque;
     padding: 10px;
 }
-
 /* Grid for each possible slot? 6X7 board, Fill slots and maybe use a class or JS to fill/cover them and make them inaccessible to next piece? */
 body {
     display: grid;
@@ -130,7 +101,4 @@ body {
                         "rows rows rows rows rows rows rows"; */
     /* justify-items: stretch;
     align-content: space-between; */
-
-
 }
-
