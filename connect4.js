@@ -91,6 +91,7 @@ function userSelection() {
                     (playGameColumns[c + 1].childNodes[r].dataset.player) == player &&
                     (playGameColumns[c + 2].childNodes[r].dataset.player) == player &&
                     (playGameColumns[c + 3].childNodes[r].dataset.player) == player) {
+                    alert(`${player} won`);
                     return console.log(`${player} wins`);
                 }
             }
@@ -102,6 +103,7 @@ function userSelection() {
                     (playGameColumns[c].childNodes[r - 1].dataset.player) == player &&
                     (playGameColumns[c].childNodes[r - 2].dataset.player) == player &&
                     (playGameColumns[c].childNodes[r - 3].dataset.player) == player) {
+                    alert(`${player} won`);
                     return console.log(`${player} wins`);
                 }
             }
@@ -114,7 +116,9 @@ function userSelection() {
                     (playGameColumns[c + 1].childNodes[r - 1].dataset.player) == player &&
                     (playGameColumns[c + 2].childNodes[r - 2].dataset.player) == player &&
                     (playGameColumns[c + 3].childNodes[r - 3].dataset.player) == player) {
+                    alert(`${player} won`);
                     return console.log(`${player} wins`);
+
                 }
             }
     }
@@ -126,6 +130,7 @@ function userSelection() {
                     (playGameColumns[c + 1].childNodes[r + 1].dataset.player) == player &&
                     (playGameColumns[c + 2].childNodes[r + 2].dataset.player) == player &&
                     (playGameColumns[c + 3].childNodes[r + 3].dataset.player) == player) {
+                    alert(`${player} won`);
                     return console.log(`${player} wins`);
                 }
             }
