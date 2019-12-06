@@ -1,19 +1,56 @@
 let headerArea = document.querySelector('header');
 let mainContent = document.querySelector('body');
 let playArea = document.querySelector('main');
-let startGameButton = document.createElement('button');
+let playerIndicator = document.querySelector('.playerIndicator');
+let playerOneText = document.querySelector('.playerOneText');
+let playerTwoText = document.querySelector('.playerTwoText');
+
 let gameTurns = 0;
-let playerOneIndicator = doucment.querySelector('h1');
 // starting page function
 landingPageStart = function () {
-    startGameButton.textContent = "Start Game";
-    playArea.append(startGameButton);
-    startGameButton.addEventListener('click', function () {
+    headerArea.textContent = "Welcome to CONNNECT 4 DOTS!!";
+    let playerVsPlayer = document.createElement('button');
+    playerVsPlayer.classList.add('landingPage');
+    playerVsPlayer.textContent = "Player VS Player";
+    playArea.append(playerVsPlayer);
+    playerVsPlayer.addEventListener('click', function () {
         createGameColumn();
         createGameElements();
-    })
+        removeLandingPage();
+    });
+
+    let playerVsComputer = document.createElement('button');
+    playerVsComputer.classList.add('landingPage');
+    playerVsComputer.textContent = "Player VS CPU";
+    playArea.append(playerVsComputer);
+    playerVsComputer.addEventListener('click', function () {
+        // createGameColumn();
+        // createGameElements();
+    });
+
+    let learningMode = document.createElement('button');
+    learningMode.classList.add('landingPage');
+    learningMode.textContent = "Learning Mode";
+    playArea.append(learningMode);
+    playArea.addEventListener('click', function () {
+        // createGameColumn();
+        // createGameElements();
+    });
+
+    let howToPlay = document.createElement('button');
+    howToPlay.classList.add('landingPage');
+    howToPlay.textContent = "How To Play";
+    playArea.append(howToPlay);
+    howToPlay.addEventListener('click', function () {
+        window.open("http://www.ludoteka.com/connect-4.html", "_blank");
+    });
 
 }
+
+removeLandingPage = function () {
+    $('.landingPage').hide();
+}
+
 landingPageStart();
 
 
@@ -36,11 +73,11 @@ landingPageStart();
 // intro.textContent = "CONNECT 4 DOTS THE GAME";
 // mainContent.append(intro);
 // takes me to the game
-let createGameColumn = function () {
+createGameColumn = function () {
     for (let i = 0; i < 7; i++) {
         let gameColumn = document.createElement('ol');
-        // gameColumn.className = `columns${i}`;
-        gameColumn.className = "columns";
+        gameColumn.className = `columns${i}`;
+        // gameColumn.className = "columns";
         gameColumn.addEventListener('click', userSelection);
         playArea.append(gameColumn);
     }
@@ -67,29 +104,30 @@ let createGameColumn = function () {
 // createPlayerTwo.textContent = "Player 2";
 // headerArea.append(createPlayerTwo);
 // whichPlayerTurn(player);
-let createGameElements = function () {
+createGameElements = function () {
+    headerArea.textContent = "May the best player win";
     let createRestartButton = document.createElement('button');
     createRestartButton.classList.add('restartGameButton');
     createRestartButton.textContent = "Restart Game";
     createRestartButton.addEventListener('click', function () {
         blankGameState();
     })
-    document.querySelector('nav').append(createRestartButton);
+    document.querySelector('header').append(createRestartButton);
 
     let endGameButton = document.createElement('button');
     endGameButton.classList.add('endGameButton');
     endGameButton.textContent = "End Game";
     endGameButton.addEventListener('click', function () {
 
-        document.querySelector('nav').append(endGameButton);
+        document.querySelector('header').append(endGameButton);
     })
 
     // how to end the game and return to start page
 
 
-    changeGameElements = function () {
-        whichPlayerTurn(player);
-    }
+    // changeGameElements = function () {
+    //     whichPlayerTurn(player);
+    // }
     blankGameState = function () {
         player = 1;
         let allSelections = document.getElementsByTagName('LI');
@@ -116,7 +154,8 @@ function userSelection() {
                     (playGameColumns[c + 1].childNodes[r].dataset.player) == player &&
                     (playGameColumns[c + 2].childNodes[r].dataset.player) == player &&
                     (playGameColumns[c + 3].childNodes[r].dataset.player) == player) {
-                    alert(`${player} won`);
+                    // alert(`${player} won`);
+                    headerArea.textContent = `Player ${player} has WON!`;
                     return console.log(`${player} wins`);
                 }
             }
@@ -128,7 +167,8 @@ function userSelection() {
                     (playGameColumns[c].childNodes[r - 1].dataset.player) == player &&
                     (playGameColumns[c].childNodes[r - 2].dataset.player) == player &&
                     (playGameColumns[c].childNodes[r - 3].dataset.player) == player) {
-                    alert(`${player} won`);
+                    // alert(`${player} won`);
+                    headerArea.textContent = `Player ${player} has WON!`;
                     return console.log(`${player} wins`);
                 }
             }
@@ -141,7 +181,8 @@ function userSelection() {
                     (playGameColumns[c + 1].childNodes[r - 1].dataset.player) == player &&
                     (playGameColumns[c + 2].childNodes[r - 2].dataset.player) == player &&
                     (playGameColumns[c + 3].childNodes[r - 3].dataset.player) == player) {
-                    alert(`${player} won`);
+                    // alert(`${player} won`);
+                    headerArea.textContent = `Player ${player} has WON!`;
                     return console.log(`${player} wins`);
 
                 }
@@ -155,7 +196,8 @@ function userSelection() {
                     (playGameColumns[c + 1].childNodes[r + 1].dataset.player) == player &&
                     (playGameColumns[c + 2].childNodes[r + 2].dataset.player) == player &&
                     (playGameColumns[c + 3].childNodes[r + 3].dataset.player) == player) {
-                    alert(`${player} won`);
+                    // alert(`${player} won`);
+                    headerArea.textContent = `Player ${player} has WON!`;
                     return console.log(`${player} wins`);
                 }
             }
@@ -170,7 +212,8 @@ function userSelection() {
 
     tieGameConditions = function () {
         if (gameTurns === 42) {
-            alert("This game is a tie!");
+            headerArea.textContent = `The game is tied try again!`
+            return console.log(`The game is tied`);
         }
     }
 
