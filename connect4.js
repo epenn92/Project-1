@@ -1,17 +1,41 @@
+let headerArea = document.querySelector('header');
 let mainContent = document.querySelector('body');
 let playArea = document.querySelector('main');
-let headerArea = document.querySelector('header');
-let intro = document.createElement('div');
-intro.textContent = "CONNECT 4 DOTS THE GAME";
-mainContent.append(intro);
 let startGameButton = document.createElement('button');
-startGameButton.textContent = "Start Game";
-playArea.append(startGameButton);
+let gameTurns = 0;
+let playerOneIndicator = doucment.querySelector('h1');
+// starting page function
+landingPageStart = function () {
+    startGameButton.textContent = "Start Game";
+    playArea.append(startGameButton);
+    startGameButton.addEventListener('click', function () {
+        createGameColumn();
+        createGameElements();
+    })
+
+}
+landingPageStart();
+
+
+// function whichPlayerTurn(player) {
+//     if (player === 1) {
+//         createPlayerTurn.textContent = "Player 1's Turn";
+//         createPlayerTurn.classList.add('playerOneIndicator');
+//         createPlayerTurn.classList.remove('playerTwoIndicator');
+//     }
+//     else {
+//         createPlayerTurn.textContent = "Player 2's Turn";
+//         createPlayerTurn.classList.add('playerTwoIndicator');
+//         createPlayerTurn.classList.remove('playerOneIndicator');
+//     }
+// }
+
+
+
+// let intro = document.createElement('div');
+// intro.textContent = "CONNECT 4 DOTS THE GAME";
+// mainContent.append(intro);
 // takes me to the game
-startGameButton.addEventListener('click', function () {
-    createGameColumn();
-    createGameElements();
-})
 let createGameColumn = function () {
     for (let i = 0; i < 7; i++) {
         let gameColumn = document.createElement('ol');
@@ -32,18 +56,18 @@ let createGameColumn = function () {
 
 
 
-let createPlayerTurn = document.createElement('h2');
+// let createPlayerTurn = document.createElement('h2');
+// let createPlayerOne = document.createElement('h1');
+// createPlayerOne.classList.add('playerOneIndicator');
+// createPlayerOne.textContent = "Player 1";
+// headerArea.append(createPlayerOne);
+// headerArea.append(createPlayerTurn);
+// let createPlayerTwo = document.createElement('h1');
+// createPlayerTwo.classList.add('playerTwoIndicator');
+// createPlayerTwo.textContent = "Player 2";
+// headerArea.append(createPlayerTwo);
+// whichPlayerTurn(player);
 let createGameElements = function () {
-    let createPlayerOne = document.createElement('h1');
-    createPlayerOne.classList.add('playerOneIndicator');
-    createPlayerOne.textContent = "Player 1";
-    headerArea.append(createPlayerOne);
-    whichPlayerTurn(player);
-    headerArea.append(createPlayerTurn);
-    let createPlayerTwo = document.createElement('h1');
-    createPlayerTwo.classList.add('playerTwoIndicator');
-    createPlayerTwo.textContent = "Player 2";
-    headerArea.append(createPlayerTwo);
     let createRestartButton = document.createElement('button');
     createRestartButton.classList.add('restartGameButton');
     createRestartButton.textContent = "Restart Game";
@@ -59,6 +83,7 @@ let createGameElements = function () {
 
         document.querySelector('nav').append(endGameButton);
     })
+
     // how to end the game and return to start page
 
 
@@ -140,9 +165,13 @@ function userSelection() {
         verticalWinCondition();
         diagonalUpRightWinCondition();
         diagonalDownRightWinCondition();
-        // veritcalWinCondition();
-        // horizontal win condition
-        // I DID NOT KNOW YOU COULD DO THIS!
+
+    }
+
+    tieGameConditions = function () {
+        if (gameTurns === 42) {
+            alert("This game is a tie!");
+        }
     }
 
 
@@ -155,8 +184,11 @@ function userSelection() {
             changeBoard.classList.add('playerOne');
             changeBoard.dataset.player = player;
             winningGameConditions();
+            gameTurns += 1;
+            console.log(gameTurns);
+            tieGameConditions();
             player += 1;
-            whichPlayerTurn(player);
+            // whichPlayerTurn(player);
 
         }
         else if (player === 2) {
@@ -164,8 +196,11 @@ function userSelection() {
             changeBoard.classList.add('playerTwo');
             changeBoard.dataset.player = player;
             winningGameConditions();
+            gameTurns += 1;
+            console.log(gameTurns);
+            tieGameConditions();
             player -= 1;
-            whichPlayerTurn(player);
+            // whichPlayerTurn(player);
         }
 
 
@@ -174,16 +209,4 @@ function userSelection() {
 
 
 
-function whichPlayerTurn(player) {
-    if (player === 1) {
-        createPlayerTurn.textContent = "Player 1's Turn";
-        createPlayerTurn.classList.add('playerOneIndicator');
-        createPlayerTurn.classList.remove('playerTwoIndicator');
-    }
-    else {
-        createPlayerTurn.textContent = "Player 2's Turn";
-        createPlayerTurn.classList.add('playerTwoIndicator');
-        createPlayerTurn.classList.remove('playerOneIndicator');
-    }
-}
 
