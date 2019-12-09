@@ -1,6 +1,6 @@
 # Connect Those Four Dots
-My custom made Connect 4 Game
-Project Site : #     
+My custom made Connect 4 Game  
+Project Site : <https://adoring-easley-ff8712.netlify.com/>  
 Trello Board : <https://trello.com/b/ajjKfjNA/project-1>     
 Github Link : <https://github.com/epenn92/Project-1>  
 ## Overview
