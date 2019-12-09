@@ -4,7 +4,7 @@ let playArea = document.querySelector('main');
 let playerIndicator = document.querySelector('.playerIndicator');
 let playerOneText = document.querySelector('.playerOneText');
 let playerTwoText = document.querySelector('.playerTwoText');
-let insertChipAudio = new Audio('/pictures/')
+let insertChipAudio = new Audio('/Pictures/insertChip.wav')
 let gameTurns = 0;
 
 landingPageStart = function () {
@@ -145,6 +145,7 @@ function userSelection() {
     let playGameColumns = document.querySelectorAll('ol');
     let dropArea = this.querySelectorAll('.rows');
     let changeBoard = dropArea[dropArea.length - 1];
+    insertChipAudio.play();
     horizontalWinCondition = function () {
         for (let r = 6; r >= 0; r--)
             for (let c = 0; c < 4; c++) {
