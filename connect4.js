@@ -134,12 +134,16 @@ createGameElements = function () {
     // }
     blankGameState = function () {
         player = 1;
+        gameTurns = 0;
+        headerArea.textContent = "May the best player win";
         let allSelections = document.getElementsByTagName('LI');
         for (let i = 0; i < allSelections.length; i++) {
             allSelections[i].className = 'rows';
             allSelections[i].dataset.player = 0;
+            playerTwoText.classList.remove('playerIndicator');
+            playerOneText.classList.add('playerIndicator');
         }
-        changeGameElements();
+
     }
 }
 
