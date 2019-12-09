@@ -30,10 +30,7 @@ header {
 .playerIndicator {
     outline: 5px solid gold;
 }
-/* .restartGameButton{
-}
-.endGameButton {
-} */
+
 .rows {
     grid-area: rows;
     height: 100px;
@@ -44,12 +41,6 @@ header {
     background-color: whitesmoke;
     text-align: center;
 }
-/* .columns {
-    grid-area: columns;
-    display: inline-block;
-    background-color: bisque;
-    padding: 10px;
-} */
 
 
 main     {
@@ -131,15 +122,14 @@ body{
 }
 .connect4DotsGame {
     text-align: center;
-    /* width: 100%; */
+
 }
 
 .playerFunctions {
     display: flex;
     justify-content: space-around;
     margin-bottom: -4%;
-    /* border-bottom: 10px solid paleturquoise; */
-}
+}  
 
 h1{
     justify-items: flex-start;
@@ -183,7 +173,7 @@ h2 {
     margin: 30% auto;
     width: 90%;
     text-align: center;
-        
+
 }
 .closeModal {
 
