@@ -49,6 +49,7 @@ landingPageStart = function () {
 
 removeLandingPage = function () {
     $('.landingPage').hide();
+    $('.connect4DotsGameSelect').hide();
 }
 
 landingPageStart();
@@ -106,13 +107,16 @@ createGameColumn = function () {
 // whichPlayerTurn(player);
 createGameElements = function () {
     headerArea.textContent = "May the best player win";
+    playerOneText.textContent = "P1";
+    playerTwoText.textContent = "P2";
+    playerOneText.classList.add('playerIndicator');
     let createRestartButton = document.createElement('button');
     createRestartButton.classList.add('restartGameButton');
     createRestartButton.textContent = "Restart Game";
     createRestartButton.addEventListener('click', function () {
         blankGameState();
     })
-    document.querySelector('header').append(createRestartButton);
+    document.querySelector('main').append(createRestartButton);
 
     let endGameButton = document.createElement('button');
     endGameButton.classList.add('endGameButton');
@@ -138,6 +142,7 @@ createGameElements = function () {
         changeGameElements();
     }
 }
+
 let playerOneTag = document.querySelector('.firstPlayer');
 let playerTwoTag = document.querySelector('.secondPlayer');
 let player = 1;
@@ -230,6 +235,8 @@ function userSelection() {
             gameTurns += 1;
             console.log(gameTurns);
             tieGameConditions();
+            playerOneText.classList.remove('playerIndicator');
+            playerTwoText.classList.add('playerIndicator');
             player += 1;
             // whichPlayerTurn(player);
 
@@ -242,6 +249,8 @@ function userSelection() {
             gameTurns += 1;
             console.log(gameTurns);
             tieGameConditions();
+            playerTwoText.classList.remove('playerIndicator');
+            playerOneText.classList.add('playerIndicator');
             player -= 1;
             // whichPlayerTurn(player);
         }
