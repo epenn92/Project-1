@@ -1,3 +1,6 @@
+body {
+    font-family: 'Roboto', sans-serif;
+}
 header {
     grid-area: header;
 }
@@ -137,11 +140,13 @@ h1{
     justify-items: flex-start;
     font-size: 3rem;
     color: red;
+    background-color: salmon;
 }
 h2 {
     justify-items: flex-end;
     font-size: 3rem;
     color: blue;
+    background-color: slateblue;
 }
 
 .connect4DotsGameSelect {
@@ -162,7 +167,7 @@ h2 {
     display: none;
     position: fixed;
     z-index: 1;
-    padding-top: 100px;
+    padding-top: 50px;
     left: 0;
     top: 0;
     width: 100%;
@@ -192,4 +197,10 @@ h2 {
   color: black;
   text-decoration: none;
   cursor: pointer;
+}
+
+.restartGameButton {
+    display: block;
+    font-size: 12px;
+    background-color: gold;
 }

@@ -4,7 +4,9 @@ let playArea = document.querySelector('main');
 let playerIndicator = document.querySelector('.playerIndicator');
 let playerOneText = document.querySelector('.playerOneText');
 let playerTwoText = document.querySelector('.playerTwoText');
-let insertChipAudio = new Audio('/Pictures/insertChip.wav')
+let insertChipAudio = new Audio('/Pictures/insertChip.wav');
+let winningPlayerAudio = new Audio('/Pictures/winningPlayer.wav');
+let playerTieAudio = new Audio('/Pictures/playerTie.wav');
 let gameTurns = 0;
 
 landingPageStart = function () {
@@ -51,7 +53,7 @@ removeLandingPage = function () {
 }
 
 landingPageStart();
-//creating a modal
+
 gameModal = function () {
     let myGameModal = document.createElement('div');
     playArea.append(myGameModal);
@@ -106,7 +108,6 @@ createGameElements = function () {
         blankGameState();
     })
     document.querySelector('main').append(createRestartButton);
-    //modal here
     let gameModal = document.createElement('div');
     gameModal.classList.add('gameModal');
 
@@ -156,6 +157,7 @@ function userSelection() {
                     (playGameColumns[c + 3].childNodes[r].dataset.player) == player) {
 
                     headerArea.textContent = `Player ${player} has WON!`;
+                    winningPlayerAudio.play();
                     gameModal();
                 }
             }
@@ -169,6 +171,7 @@ function userSelection() {
                     (playGameColumns[c].childNodes[r - 3].dataset.player) == player) {
 
                     headerArea.textContent = `Player ${player} has WON!`;
+                    winningPlayerAudio.play();
                     gameModal();
                 }
             }
@@ -183,6 +186,7 @@ function userSelection() {
                     (playGameColumns[c + 3].childNodes[r - 3].dataset.player) == player) {
 
                     headerArea.textContent = `Player ${player} has WON!`;
+                    winningPlayerAudio.play();
                     gameModal();
 
                 }
@@ -198,6 +202,7 @@ function userSelection() {
                     (playGameColumns[c + 3].childNodes[r + 3].dataset.player) == player) {
 
                     headerArea.textContent = `Player ${player} has WON!`;
+                    winningPlayerAudio.play();
                     gameModal();
                 }
             }
@@ -213,6 +218,7 @@ function userSelection() {
     tieGameConditions = function () {
         if (gameTurns === 42) {
             headerArea.textContent = `The game is tied try again!`
+            playerTieAudio.play();
             gameModal();
         }
     }
