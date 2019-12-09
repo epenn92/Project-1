@@ -50,30 +50,35 @@ landingPageStart = function () {
 removeLandingPage = function () {
     $('.landingPage').hide();
     $('.connect4DotsGameSelect').hide();
+    $('.playerFunctions').show();
 }
 
 landingPageStart();
+//creating a modal
+gameModal = function () {
+    let myGameModal = document.createElement('div');
+    playArea.append(myGameModal);
+    myGameModal.classList.add('gameModalBackGround');
+    let myGameModalContent = document.createElement('div');
+    myGameModalContent.classList.add('gameModalContent');
+    myGameModal.append(myGameModalContent);
+    if (gameTurns === 42) {
+        myGameModalContent.textContent = `Game is a tie! No one wins!`
+    }
+    else {
+        myGameModalContent.textContent = `Congratulations player ${player} you win!`
+    }
+    let closeButton = document.createElement('span');
+    myGameModalContent.append(closeButton);
+    closeButton.classList.add('closeModal');
+    closeButton.textContent = "Close";
+    myGameModal.style.display = "block";
+    closeButton.addEventListener('click', function () {
+        myGameModal.style.display = "none";
+        blankGameState();
+    });
+}
 
-
-// function whichPlayerTurn(player) {
-//     if (player === 1) {
-//         createPlayerTurn.textContent = "Player 1's Turn";
-//         createPlayerTurn.classList.add('playerOneIndicator');
-//         createPlayerTurn.classList.remove('playerTwoIndicator');
-//     }
-//     else {
-//         createPlayerTurn.textContent = "Player 2's Turn";
-//         createPlayerTurn.classList.add('playerTwoIndicator');
-//         createPlayerTurn.classList.remove('playerOneIndicator');
-//     }
-// }
-
-
-
-// let intro = document.createElement('div');
-// intro.textContent = "CONNECT 4 DOTS THE GAME";
-// mainContent.append(intro);
-// takes me to the game
 createGameColumn = function () {
     for (let i = 0; i < 7; i++) {
         let gameColumn = document.createElement('ol');
@@ -117,17 +122,32 @@ createGameElements = function () {
         blankGameState();
     })
     document.querySelector('main').append(createRestartButton);
+    //modal here
+    let gameModal = document.createElement('div');
+    gameModal.classList.add('gameModal');
 
-    let endGameButton = document.createElement('button');
-    endGameButton.classList.add('endGameButton');
-    endGameButton.textContent = "End Game";
-    endGameButton.addEventListener('click', function () {
 
-        document.querySelector('header').append(endGameButton);
-    })
+    // let endGameButton = document.createElement('button');
+    // endGameButton.classList.add('endGameButton');
+    // endGameButton.textContent = "End Game";
+    // endGameButton.addEventListener('click', function () {
+    //     removeGameState();
+    //     landingPageStart();
+    // })
+    // document.querySelector('main').append(endGameButton);
 
     // how to end the game and return to start page
+    removeGameState = function () {
+        // let allSelections = document.querySelectorAll('li');
+        // allSelections.remove();
+        // let allColumns = document.querySelectorAll('ol');
+        playArea.remove();
 
+        $('.playerfunctions').hide();
+        $('.landingPage').show();
+        $('.connect4DotsGameSelect').show();
+
+    }
 
     // changeGameElements = function () {
     //     whichPlayerTurn(player);
@@ -145,7 +165,9 @@ createGameElements = function () {
         }
 
     }
+
 }
+
 
 let playerOneTag = document.querySelector('.firstPlayer');
 let playerTwoTag = document.querySelector('.secondPlayer');
@@ -165,7 +187,7 @@ function userSelection() {
                     (playGameColumns[c + 3].childNodes[r].dataset.player) == player) {
                     // alert(`${player} won`);
                     headerArea.textContent = `Player ${player} has WON!`;
-                    return console.log(`${player} wins`);
+                    gameModal();
                 }
             }
     }
@@ -178,7 +200,7 @@ function userSelection() {
                     (playGameColumns[c].childNodes[r - 3].dataset.player) == player) {
                     // alert(`${player} won`);
                     headerArea.textContent = `Player ${player} has WON!`;
-                    return console.log(`${player} wins`);
+                    gameModal();
                 }
             }
     }
@@ -192,7 +214,7 @@ function userSelection() {
                     (playGameColumns[c + 3].childNodes[r - 3].dataset.player) == player) {
                     // alert(`${player} won`);
                     headerArea.textContent = `Player ${player} has WON!`;
-                    return console.log(`${player} wins`);
+                    gameModal();
 
                 }
             }
@@ -207,7 +229,7 @@ function userSelection() {
                     (playGameColumns[c + 3].childNodes[r + 3].dataset.player) == player) {
                     // alert(`${player} won`);
                     headerArea.textContent = `Player ${player} has WON!`;
-                    return console.log(`${player} wins`);
+                    gameModal();
                 }
             }
     }
@@ -222,7 +244,7 @@ function userSelection() {
     tieGameConditions = function () {
         if (gameTurns === 42) {
             headerArea.textContent = `The game is tied try again!`
-            return console.log(`The game is tied`);
+            gameModal();
         }
     }
 
