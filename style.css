@@ -114,10 +114,12 @@ body{
     background-color: slategray;
 }
 .headerStart {
-    color: #eee;
+    color:  rebeccapurple;
     text-align: center;
     font-size: 5em;
     justify-content: center;
+  
+    
 
 }
 .connect4DotsGame {
@@ -148,11 +150,13 @@ h2 {
 
 }
 .landingPage {
-    height: 20%;
-    width: 80%;
+    height: 5rem;
+    width: 10rem;
     justify-content: center;
     margin: 0 auto;
     background-color: lightcoral;
+    font-size: 25px;
+    color: slateblue;
 }
 .gameModalBackGround {
     display: none;

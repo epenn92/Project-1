@@ -4,7 +4,7 @@ let playArea = document.querySelector('main');
 let playerIndicator = document.querySelector('.playerIndicator');
 let playerOneText = document.querySelector('.playerOneText');
 let playerTwoText = document.querySelector('.playerTwoText');
-
+let insertChipAudio = new Audio('/pictures/')
 let gameTurns = 0;
 
 landingPageStart = function () {
